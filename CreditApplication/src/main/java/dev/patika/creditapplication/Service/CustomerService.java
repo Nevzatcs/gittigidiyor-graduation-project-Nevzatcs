@@ -11,6 +11,7 @@ import dev.patika.capstone.repository.CustomerRepository;
 import dev.patika.capstone.repository.TransactionLoggerRepository;
 import dev.patika.capstone.util.ClientRequestInfo;
 import dev.patika.creditapplication.dto.CustomerDTO;
+import dev.patika.creditapplication.exceptions.CustomerNotFoundException;
 import dev.patika.creditapplication.model.Customer;
 import dev.patika.creditapplication.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;

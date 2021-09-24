@@ -4,6 +4,8 @@ import dev.patika.capstone.dto.CustomerDTO;
 import dev.patika.capstone.model.Customer;
 import dev.patika.capstone.service.CustomerService;
 import dev.patika.creditapplication.Service.CustomerService;
+import dev.patika.creditapplication.dto.CustomerDTO;
+import dev.patika.creditapplication.model.Customer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +28,7 @@ public class CustomerController {
     }
 
     @PostMapping("/save-customer")
-    public ResponseEntity<Customer> saveCustomer(@RequestBody @Valid CustomerDTO customerDTO,BindingResult result) {
+    public ResponseEntity<Customer> saveCustomer(@RequestBody @Valid CustomerDTO customerDTO, BindingResult result) {
         Optional<Customer> resultOptional = customerService.saveCustomer(customerDTO);
 
         if (resultOptional.isPresent()) {
