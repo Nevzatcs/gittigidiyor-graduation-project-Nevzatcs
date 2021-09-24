@@ -1,8 +1,5 @@
 package dev.patika.creditapplication.Service;
 
-import dev.patika.capstone.model.enumeration.CreditScoreResult;
-import dev.patika.capstone.repository.CreditRepository;
-import dev.patika.capstone.repository.CustomerRepository;
 import dev.patika.creditapplication.model.enumeration.CreditScoreResult;
 import dev.patika.creditapplication.repository.CreditRepository;
 import dev.patika.creditapplication.repository.CustomerRepository;

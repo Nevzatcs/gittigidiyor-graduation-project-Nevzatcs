@@ -1,6 +1,5 @@
 package dev.patika.creditapplication.dto;
 
-import dev.patika.capstone.model.enumeration.CreditScoreResult;
 import dev.patika.creditapplication.model.enumeration.CreditScoreResult;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

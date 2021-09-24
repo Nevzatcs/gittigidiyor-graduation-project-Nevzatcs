@@ -1,6 +1,6 @@
 package dev.patika.creditapplication.model;
 
-import dev.patika.capstone.model.enumeration.TransactionLogType;
+import dev.patika.creditapplication.model.enumeration.TransactionLogType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

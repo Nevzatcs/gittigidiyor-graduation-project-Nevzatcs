@@ -1,6 +1,6 @@
 package dev.patika.creditapplication.repository;
 
-import dev.patika.capstone.model.Customer;
+import dev.patika.creditapplication.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

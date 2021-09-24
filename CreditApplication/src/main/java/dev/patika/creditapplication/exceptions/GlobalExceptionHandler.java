@@ -16,9 +16,9 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
-    @ExceptionHandler({dev.patika.capstone.exceptions.CustomerNotFoundException.class})
+    @ExceptionHandler({CustomerNotFoundException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ErrorResponse> handleException(dev.patika.capstone.exceptions.CustomerNotFoundException exc){
+    public ResponseEntity<ErrorResponse> handleException(CustomerNotFoundException exc){
         ErrorResponse response = prepareErrorResponse(HttpStatus.NOT_FOUND, exc.getMessage());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }

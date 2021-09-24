@@ -1,19 +1,15 @@
 package dev.patika.creditapplication.Service;
 
-import dev.patika.capstone.dto.CustomerDTO;
-import dev.patika.capstone.exceptions.BadRequestException;
-import dev.patika.capstone.exceptions.CustomerNotFoundException;
-import dev.patika.capstone.mappers.CustomerMapper;
-import dev.patika.capstone.model.Customer;
-import dev.patika.capstone.model.TransactionLogger;
-import dev.patika.capstone.model.enumeration.TransactionLogType;
-import dev.patika.capstone.repository.CustomerRepository;
-import dev.patika.capstone.repository.TransactionLoggerRepository;
-import dev.patika.capstone.util.ClientRequestInfo;
 import dev.patika.creditapplication.dto.CustomerDTO;
+import dev.patika.creditapplication.exceptions.BadRequestException;
 import dev.patika.creditapplication.exceptions.CustomerNotFoundException;
+import dev.patika.creditapplication.mappers.CustomerMapper;
 import dev.patika.creditapplication.model.Customer;
+import dev.patika.creditapplication.model.TransactionLogger;
+import dev.patika.creditapplication.model.enumeration.TransactionLogType;
 import dev.patika.creditapplication.repository.CustomerRepository;
+import dev.patika.creditapplication.repository.TransactionLoggerRepository;
+import dev.patika.creditapplication.util.ClientRequestInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,7 +78,7 @@ public class CustomerService {
 
 
 
-        this.saveTransactionToDatabase(customer,TransactionLogType.UPDATE_CUSTOMER);
+        this.saveTransactionToDatabase(customer, TransactionLogType.UPDATE_CUSTOMER);
         return Optional.of(customerRepository.save(customer));
     }
 

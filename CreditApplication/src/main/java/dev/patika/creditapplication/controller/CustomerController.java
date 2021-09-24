@@ -1,8 +1,5 @@
 package dev.patika.creditapplication.controller;
 
-import dev.patika.capstone.dto.CustomerDTO;
-import dev.patika.capstone.model.Customer;
-import dev.patika.capstone.service.CustomerService;
 import dev.patika.creditapplication.Service.CustomerService;
 import dev.patika.creditapplication.dto.CustomerDTO;
 import dev.patika.creditapplication.model.Customer;
