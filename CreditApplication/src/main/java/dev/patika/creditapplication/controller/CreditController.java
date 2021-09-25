@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/v1/api/credits")
+@RequestMapping("api/credits")
 public class CreditController {
 
     private final CreditService creditService;
@@ -21,7 +21,7 @@ public class CreditController {
 //    }
 
     @GetMapping
-    public ResponseEntity<?> findCustomerIncomeBySsid(String identityNumber) {
+    public ResponseEntity<?> customerCreditRequest(String identityNumber) {
         return new ResponseEntity<>(creditService.creditRequest(identityNumber), HttpStatus.OK);
     }
 

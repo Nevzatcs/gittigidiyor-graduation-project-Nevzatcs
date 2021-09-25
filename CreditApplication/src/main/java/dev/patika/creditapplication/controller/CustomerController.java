@@ -25,7 +25,7 @@ public class CustomerController {
     }
 
     @PostMapping("/save-customer")
-    public ResponseEntity<Customer> saveCustomer(@RequestBody @Valid CustomerDTO customerDTO, BindingResult result) {
+    public ResponseEntity<Customer> saveCustomer(@RequestBody @Valid CustomerDTO customerDTO) {
         Optional<Customer> resultOptional = customerService.saveCustomer(customerDTO);
 
         if (resultOptional.isPresent()) {
@@ -43,17 +43,20 @@ public class CustomerController {
     @PutMapping("/{id}")
     public String updateCustomer(@PathVariable Long id, @Valid CustomerDTO customerDTO, BindingResult result){
         if(result.hasErrors()){
-            return "hata";
+            return "There is an error !";
         }
         customerService.updateCustomerById(customerDTO);
 
-        return "güncellendi";
+        return "Customer updated.";
     }
 
     @GetMapping(value = "/findById/{id}")
     public ResponseEntity<Customer> findCustomerById(@PathVariable Long id) {
-        Optional<Customer> customer = customerService.findById(id);
-        return new ResponseEntity<>(customer.get(), HttpStatus.OK);
+        Optional<Customer> resultOptional = customerService.findById(id);
+        if (resultOptional.isPresent()) {
+            return new ResponseEntity<>(resultOptional.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 

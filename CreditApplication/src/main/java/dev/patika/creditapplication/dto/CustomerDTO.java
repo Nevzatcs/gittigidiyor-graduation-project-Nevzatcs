@@ -3,6 +3,7 @@ package dev.patika.creditapplication.dto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.NotBlank;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Pattern;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class CustomerDTO {
     @ApiModelProperty(hidden = true)
     private Long id;
