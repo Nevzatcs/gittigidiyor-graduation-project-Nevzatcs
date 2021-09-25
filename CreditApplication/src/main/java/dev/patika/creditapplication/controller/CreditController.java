@@ -1,6 +1,6 @@
 package dev.patika.creditapplication.controller;
 
-import dev.patika.creditapplication.Service.CreditService;
+import dev.patika.creditapplication.service.CreditService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

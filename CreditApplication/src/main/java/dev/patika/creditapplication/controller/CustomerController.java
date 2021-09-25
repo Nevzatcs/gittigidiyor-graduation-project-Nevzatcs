@@ -1,6 +1,6 @@
 package dev.patika.creditapplication.controller;
 
-import dev.patika.creditapplication.Service.CustomerService;
+import dev.patika.creditapplication.service.CustomerService;
 import dev.patika.creditapplication.dto.CustomerDTO;
 import dev.patika.creditapplication.model.Customer;
 import lombok.RequiredArgsConstructor;

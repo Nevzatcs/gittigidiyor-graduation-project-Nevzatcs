@@ -1,6 +1,6 @@
 package dev.patika.creditapplication.controller;
 
-import dev.patika.creditapplication.Service.CustomerService;
+import dev.patika.creditapplication.service.CustomerService;
 import dev.patika.creditapplication.dto.CustomerDTO;
 import dev.patika.creditapplication.model.Customer;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 

@@ -1,6 +1,6 @@
 package dev.patika.creditapplication.controller;
 
-import dev.patika.creditapplication.Service.CreditService;
+import dev.patika.creditapplication.service.CreditService;
 import dev.patika.creditapplication.dto.CustomerDTO;
 import dev.patika.creditapplication.model.Customer;
 import dev.patika.creditapplication.model.enumeration.CreditScoreResult;

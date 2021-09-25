@@ -1,4 +1,4 @@
-package dev.patika.creditapplication.Service;
+package dev.patika.creditapplication.service;
 
 import dev.patika.creditapplication.model.enumeration.CreditScoreResult;
 import dev.patika.creditapplication.repository.CreditRepository;
