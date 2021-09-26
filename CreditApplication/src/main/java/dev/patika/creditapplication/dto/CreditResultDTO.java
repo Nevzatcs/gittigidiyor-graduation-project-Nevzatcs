@@ -12,10 +12,6 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 public class CreditResultDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private double limit;
 
     @Enumerated(EnumType.STRING)
