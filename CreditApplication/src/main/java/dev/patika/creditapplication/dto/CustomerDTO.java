@@ -19,12 +19,12 @@ public class CustomerDTO {
 
     @ApiModelProperty(example = "Nevzat")
     @NotBlank(message = "First Name is mandatory")
-    @Pattern(regexp = "^\\p{L}+$", message = "Please check your First Name !")
+    @Pattern(regexp = "^[a-zA-ZöçşığüÖÇŞİĞÜ,]+(\\s{0,1}[a-zA-ZöçşığüÖÇŞİĞÜ,])*$", message = "Please check your First Name !")
     private String firstName;
 
     @ApiModelProperty(example = "Samur")
     @NotBlank(message = "Last Name is mandatory")
-    @Pattern(regexp = "^\\p{L}+$", message = "Please check your Last Name !")
+    @Pattern(regexp = "^[a-zA-ZöçşığüÖÇŞİĞÜ,]+(\\s{0,1}[a-zA-ZöçşığüÖÇŞİĞÜ,])*$", message = "Please check your Last Name !")
     private String lastName;
 
     @ApiModelProperty(example = "2500.0")

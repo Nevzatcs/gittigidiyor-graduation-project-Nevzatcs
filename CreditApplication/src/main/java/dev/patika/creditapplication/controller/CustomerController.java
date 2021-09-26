@@ -34,7 +34,7 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping(value = "/deleteById/{id}")
+    @DeleteMapping(value = "/deleteById/{id}")
     public String deleteCustomerById(@PathVariable Long id) {
         customerService.deleteById(id);
         return "Customer with id: " + id + " is deleted...";
