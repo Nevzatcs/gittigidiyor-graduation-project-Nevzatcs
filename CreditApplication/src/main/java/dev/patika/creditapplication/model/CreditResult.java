@@ -12,7 +12,6 @@ import javax.persistence.Enumerated;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@Entity
 public class CreditResult extends AbstractBaseEntity {
 
     private double creditLimit;
