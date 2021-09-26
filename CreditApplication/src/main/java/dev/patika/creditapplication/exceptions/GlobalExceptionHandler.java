@@ -22,14 +22,12 @@ public class GlobalExceptionHandler {
         ErrorResponse response = prepareErrorResponse(HttpStatus.NOT_FOUND, exc.getMessage());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
-
-
-
-
-
-
-
-
+    @ExceptionHandler({IdentityNumberNotFoundException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorResponse> handleException(IdentityNumberNotFoundException exc){
+        ErrorResponse response = prepareErrorResponse(HttpStatus.NOT_FOUND, exc.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
 
 
 

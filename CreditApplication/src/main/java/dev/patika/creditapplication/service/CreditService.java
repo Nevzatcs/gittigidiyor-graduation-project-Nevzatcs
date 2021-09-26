@@ -1,6 +1,7 @@
 package dev.patika.creditapplication.service;
 
 import dev.patika.creditapplication.dto.CreditResultDTO;
+import dev.patika.creditapplication.exceptions.IdentityNumberNotFoundException;
 import dev.patika.creditapplication.model.TransactionLogger;
 import dev.patika.creditapplication.model.enumeration.CreditScoreResult;
 import dev.patika.creditapplication.model.enumeration.TransactionLogType;
