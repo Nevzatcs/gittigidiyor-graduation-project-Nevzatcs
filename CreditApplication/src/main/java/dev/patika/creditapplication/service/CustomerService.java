@@ -49,11 +49,13 @@ public class CustomerService {
 
 
         Customer customer = customerMapper.mapFromCustomerDTOtoCustomer(customerDTO);
-        //this.saveTransactionToDatabase(customer,TransactionLogType.SAVE_CUSTOMER);
+        this.saveTransactionToDatabase(customer,TransactionLogType.SAVE_CUSTOMER);
         return Optional.of(customerRepository.save(customer));
     }
     @Transactional
         public void deleteById(Long id) {
+        Optional<Customer> customer = customerRepository.findById(id);
+        this.saveTransactionToDatabase(customer.get(), TransactionLogType.DELETE_CUSTOMER );
         customerRepository.deleteById(id);
     }
 
