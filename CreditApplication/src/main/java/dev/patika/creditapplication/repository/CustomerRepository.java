@@ -50,6 +50,7 @@ public interface CustomerRepository extends JpaRepository<Customer,Long> {
 
 
     @Query("SELECT c.monthlySalary FROM Customer c WHERE c.identityNumber=:identityNumber")
-    Double getCustomerIncomeByIdentityNumber(String identityNumber);
+    Double getCustomerSalaryByIdentityNumber(String identityNumber);
 
+    Customer getCustomerByIdentityNumber(String identityNumber);
 }

@@ -1,8 +1,11 @@
 package dev.patika.creditapplication.service;
 
 import dev.patika.creditapplication.dto.CreditResultDTO;
+import dev.patika.creditapplication.dto.CustomerDTO;
 import dev.patika.creditapplication.exceptions.IdentityNumberNotFoundException;
+import dev.patika.creditapplication.mappers.CustomerMapper;
 import dev.patika.creditapplication.model.CreditResult;
+import dev.patika.creditapplication.model.Customer;
 import dev.patika.creditapplication.model.TransactionLogger;
 import dev.patika.creditapplication.model.enumeration.CreditScoreResult;
 import dev.patika.creditapplication.model.enumeration.TransactionLogType;
@@ -26,6 +29,7 @@ public class CreditService {
 
     private final CreditRepository creditRepository;
     private final CustomerRepository customerRepository;
+    private final CustomerMapper customerMapper;
     private final int creditLimitMultiplier = 4;
     @Autowired
     private ClientRequestInfo clientRequestInfo;
@@ -36,41 +40,52 @@ public class CreditService {
     public CreditResultDTO getCreditRequest(String identityNumber){
         CreditResultDTO creditResult = new CreditResultDTO();
 
-        Double income = customerRepository.getCustomerIncomeByIdentityNumber(identityNumber);
-        //if(income == null){
-        //    throw  new IdentityNumberNotFoundException("Identity Number is not found !, Check your Identity Number !");
-        //}
-        Long lastDigit = Math.abs(Long.parseLong(identityNumber)%10);
+        Double salary = customerRepository.getCustomerSalaryByIdentityNumber(identityNumber);
+        if(salary == null){
+            throw  new IdentityNumberNotFoundException("Identity Number is not found !, Check your Identity Number !");
+        }
+        Long lastDigit = Math.abs(Long.valueOf(identityNumber)%10);
         double credit = creditRepository.getCreditScoreByLastNumber(lastDigit);
 
         if (credit<500){
             creditResult.setResult(CreditScoreResult.REJECTED);
             creditResult.setLimit(0);
+            sendMessage(identityNumber);
             this.saveTransactionToDatabase(identityNumber, CreditScoreResult.REJECTED);
             return creditResult;
         }
-        else if(credit>500 && credit<1000 && income<5000){
-            this.saveTransactionToDatabase(identityNumber, CreditScoreResult.ACCEPTED);
+        else if(credit>500 && credit<1000 && salary<5000){
 
-            creditResult.setResult(CreditScoreResult.ACCEPTED);
             creditResult.setLimit(10000);
+            creditResult.setResult(CreditScoreResult.ACCEPTED);
+            sendMessage(identityNumber);
+            this.saveTransactionToDatabase(identityNumber, CreditScoreResult.ACCEPTED);
 
             return creditResult;
         }
-        else if(credit>500 && credit<1000 && income>5000){
+        else if(credit>500 && credit<1000 && salary>5000){
             creditResult.setResult(CreditScoreResult.ACCEPTED);
             creditResult.setLimit(20000);
+            sendMessage(identityNumber);
             this.saveTransactionToDatabase(identityNumber, CreditScoreResult.ACCEPTED);
             return creditResult;
         }
         else if(credit>=1000 ){
             creditResult.setResult(CreditScoreResult.ACCEPTED);
-            double limit = income * creditLimitMultiplier;
+            double limit = salary * creditLimitMultiplier;
             creditResult.setLimit(limit);
+            sendMessage(identityNumber);
             this.saveTransactionToDatabase(identityNumber, CreditScoreResult.ACCEPTED);
             return creditResult;
         }
         throw  new IdentityNumberNotFoundException("Identity Number is not found !, Check your Identity Number !");
+    }
+
+    private void sendMessage(String identityNumber){
+        Customer customer = customerRepository.getCustomerByIdentityNumber(identityNumber);
+        CustomerDTO customerDTO = customerMapper.mapFromCustomertoCustomerDTO(customer);
+        System.out.println("Your credit result send to your phoneNumber: " + customerDTO.getPhoneNumber());
+
     }
 
     private void saveTransactionToDatabase(String identityNumber, CreditScoreResult creditScoreResult) {

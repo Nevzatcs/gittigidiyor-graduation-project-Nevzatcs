@@ -73,22 +73,22 @@ class CustomerRepositoryTest {
     }
 
     @Test
-    void getCustomerIncomeByIdentityNumber(){
+    void getCustomerSalaryByIdentityNumber(){
         Customer customer = new Customer("Can","Samur", 6000, "11111111112", "05364778822");
         repository.save(customer);
         //when
-        double expected = repository.getCustomerIncomeByIdentityNumber(customer.getIdentityNumber());
+        double expected = repository.getCustomerSalaryByIdentityNumber(customer.getIdentityNumber());
 
         //then
         assertEquals(expected, customer.getMonthlySalary());
 
     }
     @Test
-    void getCustomerIncomeByIdentityNumberIsNotEqual(){
+    void getCustomerSalaryByIdentityNumberIsNotEqual(){
         Customer customer = new Customer("Can","Samur", 6000, "11111111112", "05364778822");
         //repository.save(customer);
         //when
-        Double expected = repository.getCustomerIncomeByIdentityNumber(customer.getIdentityNumber());
+        Double expected = repository.getCustomerSalaryByIdentityNumber(customer.getIdentityNumber());
 
         //then
         assertNull(expected);
