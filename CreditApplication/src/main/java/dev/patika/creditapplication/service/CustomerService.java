@@ -38,8 +38,6 @@ public class CustomerService {
         boolean isExists = customerRepository.selectExistsIdentityNumber(customerDTO.getIdentityNumber());
         boolean isExistPhoneNumber = customerRepository.selectExistsPhoneNumber(customerDTO.getPhoneNumber());
 
-        //if(customerDTO.getIdentityNumber().endsWith("1") || customerDTO.getIdentityNumber().endsWith("3") || customerDTO.getIdentityNumber().endsWith("5") || customerDTO.getIdentityNumber().endsWith("7") || customerDTO.getIdentityNumber().endsWith("9") )
-        //    throw  new BadRequestException("tc tek sayı ile bitemez");
         if(isExists){
             throw new BadRequestException("Customer with Identity Number : " + customerDTO.getIdentityNumber() + " is already exists!");
         }
@@ -50,7 +48,7 @@ public class CustomerService {
 
 
         Customer customer = customerMapper.mapFromCustomerDTOtoCustomer(customerDTO);
-        this.saveTransactionToDatabase(customer,TransactionLogType.SAVE_CUSTOMER);
+        //this.saveTransactionToDatabase(customer,TransactionLogType.SAVE_CUSTOMER);
         return Optional.of(customerRepository.save(customer));
     }
     @Transactional
