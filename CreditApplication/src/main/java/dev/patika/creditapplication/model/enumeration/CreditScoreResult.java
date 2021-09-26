@@ -1,5 +1,5 @@
 package dev.patika.creditapplication.model.enumeration;
 
 public enum CreditScoreResult {
-    ACCEPTED, REJECTED
+    ACCEPTED, REJECTED, CUSTOMER_LOG
 }
