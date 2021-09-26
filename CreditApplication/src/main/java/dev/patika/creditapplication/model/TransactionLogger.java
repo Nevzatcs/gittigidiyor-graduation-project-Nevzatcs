@@ -1,5 +1,6 @@
 package dev.patika.creditapplication.model;
 
+import dev.patika.creditapplication.model.enumeration.CreditScoreResult;
 import dev.patika.creditapplication.model.enumeration.TransactionLogType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,4 +24,5 @@ public class TransactionLogger extends AbstractBaseEntity{
     private String sessionActivityId;
     @Enumerated(EnumType.STRING)
     private TransactionLogType transactionLogType;
+    private CreditScoreResult creditScoreResult;
 }
