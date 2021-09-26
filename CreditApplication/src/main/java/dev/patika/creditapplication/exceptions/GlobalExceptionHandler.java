@@ -2,6 +2,7 @@ package dev.patika.creditapplication.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -27,6 +28,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleException(IdentityNumberNotFoundException exc){
         ErrorResponse response = prepareErrorResponse(HttpStatus.NOT_FOUND, exc.getMessage());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({MethodArgumentNotValidException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorResponse> handleException(MethodArgumentNotValidException exc){
+        ErrorResponse response = prepareErrorResponse(HttpStatus.BAD_REQUEST,"Your pattern is invalid!");
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
 

@@ -1,7 +1,9 @@
 package dev.patika.creditapplication.util;
 
 import dev.patika.creditapplication.model.CreditScore;
+import dev.patika.creditapplication.model.Customer;
 import dev.patika.creditapplication.repository.CreditRepository;
+import dev.patika.creditapplication.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,7 @@ public class InitializerRunner implements CommandLineRunner {
 //    private static final Logger logger = LoggerFactory.getLogger(InitializerRunner.class);
 
     private final CreditRepository creditRepository;
+    private final CustomerRepository customerRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -22,20 +25,18 @@ public class InitializerRunner implements CommandLineRunner {
         creditRepository.save(CreditScore.builder().lastNumber(8L).creditScore(900).build());
         creditRepository.save(CreditScore.builder().lastNumber(0L).creditScore(2000).build());
 
-        /*
-        CreditScore creditScore1 = CreditScore.builder().lastNumber(2L).creditScore(550).build();
-        CreditScore creditScore2 = CreditScore.builder().lastNumber(4L).creditScore(1000).build();
-        CreditScore creditScore3 = CreditScore.builder().lastNumber(6L).creditScore(400).build();
-        CreditScore creditScore4 = CreditScore.builder().lastNumber(8L).creditScore(900).build();
-        CreditScore creditScore5 = CreditScore.builder().lastNumber(0L).creditScore(2000).build();
+        Customer customer1 = new Customer("Ali","Can",4800, "11111111114","053412345698");
+        Customer customer2 = new Customer("Ahmet","Cem",6000, "11111111116","053412345687");
+        Customer customer3 = new Customer("Ayşe","Telli",12000, "11111111110","053412344698");
+        Customer customer4 = new Customer("Cemre","Gül",4000, "11111111118","053412345898");
+        Customer customer5 = new Customer("Mehmet","Yekta",2500, "11111111112","053412345698");
 
-        creditRepository.save(creditScore1);
-        creditRepository.save(creditScore2);
-        creditRepository.save(creditScore3);
-        creditRepository.save(creditScore4);
-        creditRepository.save(creditScore5);
+        customerRepository.save(customer1);
+        customerRepository.save(customer2);
+        customerRepository.save(customer3);
+        customerRepository.save(customer4);
+        customerRepository.save(customer5);
 
-         */
 
 
     }
