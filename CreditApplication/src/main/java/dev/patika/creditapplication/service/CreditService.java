@@ -2,6 +2,7 @@ package dev.patika.creditapplication.service;
 
 import dev.patika.creditapplication.dto.CreditResultDTO;
 import dev.patika.creditapplication.exceptions.IdentityNumberNotFoundException;
+import dev.patika.creditapplication.model.CreditResult;
 import dev.patika.creditapplication.model.TransactionLogger;
 import dev.patika.creditapplication.model.enumeration.CreditScoreResult;
 import dev.patika.creditapplication.model.enumeration.TransactionLogType;
@@ -36,9 +37,9 @@ public class CreditService {
         CreditResultDTO creditResult = new CreditResultDTO();
 
         Double income = customerRepository.getCustomerIncomeByIdentityNumber(identityNumber);
-        if(income == null){
-            throw  new IdentityNumberNotFoundException("Identity Number is not found !, Check your Identity Number !");
-        }
+        //if(income == null){
+        //    throw  new IdentityNumberNotFoundException("Identity Number is not found !, Check your Identity Number !");
+        //}
         Long lastDigit = Math.abs(Long.parseLong(identityNumber)%10);
         double credit = creditRepository.getCreditScoreByLastNumber(lastDigit);
 
@@ -49,9 +50,11 @@ public class CreditService {
             return creditResult;
         }
         else if(credit>500 && credit<1000 && income<5000){
+            this.saveTransactionToDatabase(identityNumber, CreditScoreResult.ACCEPTED);
+
             creditResult.setResult(CreditScoreResult.ACCEPTED);
             creditResult.setLimit(10000);
-            this.saveTransactionToDatabase(identityNumber, CreditScoreResult.ACCEPTED);
+
             return creditResult;
         }
         else if(credit>500 && credit<1000 && income>5000){
@@ -79,6 +82,7 @@ public class CreditService {
         transactionLogger.setClientIpAddress(clientRequestInfo.getClientIpAddress());
         transactionLogger.setSessionActivityId(clientRequestInfo.getSessionActivityId());
         transactionLogger.setCreditScoreResult(creditScoreResult);
+
         transactionLoggerRepository.save(transactionLogger);
     }
 

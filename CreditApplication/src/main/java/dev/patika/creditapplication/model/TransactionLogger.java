@@ -24,5 +24,8 @@ public class TransactionLogger extends AbstractBaseEntity{
     private String sessionActivityId;
     @Enumerated(EnumType.STRING)
     private TransactionLogType transactionLogType;
+    @Enumerated(EnumType.STRING)
     private CreditScoreResult creditScoreResult;
+
+
 }

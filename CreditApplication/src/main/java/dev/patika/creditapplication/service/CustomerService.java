@@ -6,6 +6,7 @@ import dev.patika.creditapplication.exceptions.CustomerNotFoundException;
 import dev.patika.creditapplication.mappers.CustomerMapper;
 import dev.patika.creditapplication.model.Customer;
 import dev.patika.creditapplication.model.TransactionLogger;
+import dev.patika.creditapplication.model.enumeration.CreditScoreResult;
 import dev.patika.creditapplication.model.enumeration.TransactionLogType;
 import dev.patika.creditapplication.repository.CustomerRepository;
 import dev.patika.creditapplication.repository.TransactionLoggerRepository;
@@ -92,7 +93,7 @@ public class CustomerService {
         TransactionLogger transactionLogger = new TransactionLogger();
         transactionLogger.setIdentityNumber(customer.getIdentityNumber());
         transactionLogger.setTransactionDateTime(LocalDate.now());
-
+        transactionLogger.setCreditScoreResult(CreditScoreResult.CUSTOMER_LOG);
         transactionLogger.setClientUrl(clientRequestInfo.getClientUrl());
         transactionLogger.setClientIpAddress(clientRequestInfo.getClientIpAddress());
         transactionLogger.setSessionActivityId(clientRequestInfo.getSessionActivityId());
