@@ -22,7 +22,7 @@ public class CreditController {
 
     @GetMapping
     public ResponseEntity<?> customerCreditRequest(String identityNumber) {
-        return new ResponseEntity<>(creditService.creditRequest(identityNumber), HttpStatus.OK);
+        return new ResponseEntity<>(creditService.getCreditRequest(identityNumber), HttpStatus.OK);
     }
 
 }
