@@ -1,5 +1,6 @@
 package dev.patika.creditapplication.controller;
 
+import dev.patika.creditapplication.dto.CreditResultDTO;
 import dev.patika.creditapplication.service.CreditService;
 import dev.patika.creditapplication.dto.CustomerDTO;
 import dev.patika.creditapplication.model.Customer;
@@ -27,8 +28,10 @@ class CreditControllerTest {
     void findCustomerIncomeBySsid() {
         //given
         Customer customer = new Customer();
-        CreditScoreResult creditScoreresult = CreditScoreResult.ACCEPTED;
-        when(mockCreditService.creditRequest(customer.getIdentityNumber())).thenReturn(creditScoreresult);
+        CreditResultDTO creditResultDTO = new CreditResultDTO();
+        creditResultDTO.setResult(CreditScoreResult.ACCEPTED);
+        //CreditScoreResult creditScoreresult = CreditScoreResult.ACCEPTED;
+        when(mockCreditService.getCreditRequest(customer.getIdentityNumber())).thenReturn(creditResultDTO);
 
         //when
         CustomerDTO customerDTO = new CustomerDTO();
@@ -36,7 +39,7 @@ class CreditControllerTest {
         actual = this.creditController.customerCreditRequest(customerDTO.getIdentityNumber());
 
         //then
-        assertEquals(creditScoreresult, actual.getBody());
+        assertEquals(creditResultDTO, actual.getBody());
     }
 
     @Test
@@ -44,7 +47,7 @@ class CreditControllerTest {
         //given
         Customer customer = new Customer();
 
-        when(mockCreditService.creditRequest(customer.getIdentityNumber())).thenReturn(null);
+        when(mockCreditService.getCreditRequest(customer.getIdentityNumber())).thenReturn(null);
 
         //when
         CustomerDTO customerDTO = new CustomerDTO();
