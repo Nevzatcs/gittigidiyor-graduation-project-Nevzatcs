@@ -25,4 +25,9 @@ public class CreditController {
         return new ResponseEntity<>(creditService.getCreditRequest(identityNumber), HttpStatus.OK);
     }
 
+    @GetMapping("credit-result")
+    public ResponseEntity<?> CreditRequestQuery(String identityNumber) {
+        return new ResponseEntity<>(creditService.getCreditRequest(identityNumber), HttpStatus.OK);
+    }
+
 }

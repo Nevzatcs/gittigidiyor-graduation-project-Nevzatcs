@@ -1,9 +1,14 @@
 package dev.patika.creditapplication.controller;
 
+import dev.patika.creditapplication.model.TransactionLogger;
 import dev.patika.creditapplication.service.CustomerService;
 import dev.patika.creditapplication.dto.CustomerDTO;
 import dev.patika.creditapplication.model.Customer;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -57,6 +62,16 @@ public class CustomerController {
             return new ResponseEntity<>(resultOptional.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/get-transactions-by-date")
+    public ResponseEntity<Page<List<TransactionLogger>>> getAllTransactionsWithDate(
+            @ApiParam(value = "transaction query for user usage", example = "05/07/2021", required = true)
+            @RequestParam String transactionDate,
+            @RequestParam(required = false) Integer pageNumber,
+            @RequestParam(required = false) Integer pageSize,
+            @PageableDefault(page = 0, size = 10) Pageable pageable){
+        return new ResponseEntity<>(this.customerService.getAllTransactionsWithDate(transactionDate, pageNumber, pageSize, pageable), HttpStatus.OK);
     }
 
 

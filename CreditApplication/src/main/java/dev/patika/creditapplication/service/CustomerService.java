@@ -11,12 +11,22 @@ import dev.patika.creditapplication.model.enumeration.TransactionLogType;
 import dev.patika.creditapplication.repository.CustomerRepository;
 import dev.patika.creditapplication.repository.TransactionLoggerRepository;
 import dev.patika.creditapplication.util.ClientRequestInfo;
+import dev.patika.creditapplication.util.CustomerValidatorUtil;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +58,7 @@ public class CustomerService {
 
 
         Customer customer = customerMapper.mapFromCustomerDTOtoCustomer(customerDTO);
-        //this.saveTransactionToDatabase(customer,TransactionLogType.SAVE_CUSTOMER);
+        this.saveTransactionToDatabase(customer,TransactionLogType.SAVE_CUSTOMER);
         return Optional.of(customerRepository.save(customer));
     }
     @Transactional
@@ -99,6 +109,8 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
+
+
     private void saveTransactionToDatabase(Customer customer, TransactionLogType transactionLogType) {
         TransactionLogger transactionLogger = new TransactionLogger();
         transactionLogger.setIdentityNumber(customer.getIdentityNumber());
@@ -109,5 +121,15 @@ public class CustomerService {
         transactionLogger.setSessionActivityId(clientRequestInfo.getSessionActivityId());
         transactionLogger.setTransactionLogType(transactionLogType);
         transactionLoggerRepository.save(transactionLogger);
+    }
+
+    public Page<List<TransactionLogger>> getAllTransactionsWithDate(String transactionDate, Integer page, Integer size, Pageable pageable) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        CustomerValidatorUtil.validateTransactionDate(transactionDate, formatter);
+        LocalDate transactionDateResult = LocalDate.parse(transactionDate, formatter);
+        if(page != null && size != null){
+            pageable = PageRequest.of(page, size);
+        }
+        return this.transactionLoggerRepository.findAllTransactionByTransactionDate(transactionDateResult, pageable);
     }
 }

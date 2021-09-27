@@ -36,9 +36,12 @@ public class GlobalExceptionHandler {
         ErrorResponse response = prepareErrorResponse(HttpStatus.BAD_REQUEST,"Your pattern is invalid!");
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
-
-
-
+    @ExceptionHandler({TransactionDateTimeParseException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorResponse> handleException(TransactionDateTimeParseException exc){
+        ErrorResponse response = prepareErrorResponse(HttpStatus.BAD_REQUEST, exc.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 
 
     private ErrorResponse prepareErrorResponse(HttpStatus httpStatus, String message) {
