@@ -30,7 +30,6 @@ class CreditControllerTest {
         Customer customer = new Customer();
         CreditResultDTO creditResultDTO = new CreditResultDTO();
         creditResultDTO.setResult(CreditScoreResult.ACCEPTED);
-        //CreditScoreResult creditScoreresult = CreditScoreResult.ACCEPTED;
         when(mockCreditService.getCreditRequest(customer.getIdentityNumber())).thenReturn(creditResultDTO);
 
         //when

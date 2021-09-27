@@ -27,7 +27,7 @@ class CreditRepositoryTest {
     }
 
     @Test
-    void getCreditScoreByLastNumberIsNot() {
+    void NotGetCreditScoreByLastNumber() {
         // given
         CreditScore creditScore = new CreditScore(2L, 550);
         //repository.save(creditScore);

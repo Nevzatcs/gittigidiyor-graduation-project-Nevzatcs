@@ -73,10 +73,4 @@ public class CustomerController {
             @PageableDefault(page = 0, size = 10) Pageable pageable){
         return new ResponseEntity<>(this.customerService.getAllTransactionsWithDate(transactionDate, pageNumber, pageSize, pageable), HttpStatus.OK);
     }
-
-
-
-
-
-
 }

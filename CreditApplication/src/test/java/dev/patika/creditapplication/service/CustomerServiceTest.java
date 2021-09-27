@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -70,72 +72,37 @@ class CustomerServiceTest {
 
     @Test
     void findById() {
+
         //given
-        //Customer customer = new Customer("Can","Samur", 6000, "11111111112", "05364778822");
-        //customer.setId(1L);
-        //when(mockCustomerRepository.selectExistsId(customer.getId())).thenReturn(Boolean.TRUE);
-
-        // when
-        //Optional<Customer> expected = customerService.findById(1L);
-
-        //then
-        //assertEquals(expected.get().getId(),customer.getId());
-
-
-    }
-    @Test
-    @DisplayName("Test findById Not Found")
-    void testFindByIdNotFound() {
-        // given
-        //when(mockCustomerRepository.findById(1L)).thenReturn(Optional.empty());
-
-
-        //when
-
-        //Optional<Customer> expected = customerService.findById(1l);
-
-        // then
-        //assertFalse(expected.isPresent(), "Customer should not be found");
-    }
-
-
-    @Test
-    void saveCustomer() {
-        // given
         Customer customer = new Customer();
-        customer.setIdentityNumber("1111");
-        when(mockCustomerRepository.selectExistsIdentityNumber(null)).thenReturn(Boolean.FALSE);
+        customer.setId(1L);
+        when(mockCustomerRepository.selectExistsId(customer.getId())).thenReturn(Boolean.TRUE);
+        when(mockCustomerRepository.findById(customer.getId())).thenReturn(Optional.of(customer));
+        //when
+        Optional<Customer> returnedObject = customerService.findById(1L);
+        //then
+        assertEquals(returnedObject, Optional.of(customer));
+
+
+    }
+
+
+    @Test
+          void saveCustomer() {
+                  //given
+              Customer customer = new Customer();
+        when(mockCustomerRepository.selectExistsIdentityNumber("1111")).thenReturn(Boolean.FALSE);
         when(mockCustomerMapper.mapFromCustomerDTOtoCustomer(Mockito.any())).thenReturn(customer);
         when(mockCustomerRepository.save(Mockito.any())).thenReturn(customer);
 
-        // when
-        CustomerDTO dto = new CustomerDTO();
+          //    // when
+              CustomerDTO dto = new CustomerDTO();
         Customer actual = this.customerService.saveCustomer(dto).get();
 
-        // then
-        assertAll(
-                () -> assertNotNull(actual),
-                () -> assertEquals(customer, actual),
-                () -> assertEquals(customer.getIdentityNumber(), actual.getIdentityNumber())
-        );
-    }
+              // then
+              assertNull(customer);
 
-
-
-    @Test
-    void deleteById() {
-        //given
-        Customer customer = new Customer("Can","Samur", 6000, "11111111112", "05364778822");
-        when(mockCustomerRepository.findById(customer.getId())).thenReturn(Optional.of(customer));
-
-        //when //servisteki gerçek metodun testi
-        CustomerDTO dto = new CustomerDTO();
-        this.customerService.deleteById(dto.getId());
-
-        //then
-        assertEquals(null,dto.getId());
-    }
-
+            }
 
 
     @Test

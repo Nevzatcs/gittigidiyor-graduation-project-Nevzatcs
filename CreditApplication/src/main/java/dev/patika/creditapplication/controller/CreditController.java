@@ -15,11 +15,6 @@ public class CreditController {
 
     private final CreditService creditService;
 
-//    @GetMapping
-//    public ResponseEntity<?> findCustomerBySsid(String Ssid) {
-//        return new ResponseEntity<>(creditScoreService.findCustomerBySsid(Ssid), HttpStatus.OK);
-//    }
-
     @GetMapping
     public ResponseEntity<?> customerCreditRequest(String identityNumber) {
         return new ResponseEntity<>(creditService.getCreditRequest(identityNumber), HttpStatus.OK);
