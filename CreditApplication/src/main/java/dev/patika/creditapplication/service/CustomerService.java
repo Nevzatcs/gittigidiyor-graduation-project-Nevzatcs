@@ -76,12 +76,13 @@ public class CustomerService {
         if(!isExistId){
             throw new CustomerNotFoundException("Customer with Id : " + customerDTO.getId() + " is not found!");
         }
+
         if(isExists){
             throw new BadRequestException("Customer with Identity Number : " + customerDTO.getIdentityNumber() + " is already exists!");
         }
-        if(isExistPhoneNumber){
-            throw new BadRequestException("Customer with phone number : " + customerDTO.getPhoneNumber() + " is already exists!");
-        }
+        //if(isExistPhoneNumber){
+        //    throw new BadRequestException("Customer with phone number : " + customerDTO.getPhoneNumber() + " is already exists!");
+        //}
 
 
         this.saveTransactionToDatabase(customer, TransactionLogType.UPDATE_CUSTOMER);
