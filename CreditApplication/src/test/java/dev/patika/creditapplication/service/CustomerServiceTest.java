@@ -68,7 +68,19 @@ class CustomerServiceTest {
 
     }
 
+    @Test
+    void deleteById() {
+        //given
+        Customer customer = new Customer("Can", "Samur", 6000, "11111111112", "05364778822");
 
+
+        //when
+        this.mockCustomerRepository.deleteById(customer.getId());
+
+        //then
+        assertNull(customer.getId());
+
+    }
 
     @Test
     void findById() {
@@ -79,35 +91,13 @@ class CustomerServiceTest {
         when(mockCustomerRepository.selectExistsId(customer.getId())).thenReturn(Boolean.TRUE);
         when(mockCustomerRepository.findById(customer.getId())).thenReturn(Optional.of(customer));
         //when
-        Optional<Customer> returnedObject = customerService.findById(1L);
+        Optional<Customer> expected = customerService.findById(1L);
         //then
-        assertEquals(returnedObject, Optional.of(customer));
+        assertEquals(expected, Optional.of(customer));
 
 
     }
 
-
-    @Test
-          void saveCustomer() {
-                  //given
-              Customer customer = new Customer();
-        when(mockCustomerRepository.selectExistsIdentityNumber("1111")).thenReturn(Boolean.FALSE);
-        when(mockCustomerMapper.mapFromCustomerDTOtoCustomer(Mockito.any())).thenReturn(customer);
-        when(mockCustomerRepository.save(Mockito.any())).thenReturn(customer);
-
-          //    // when
-              CustomerDTO dto = new CustomerDTO();
-        Customer actual = this.customerService.saveCustomer(dto).get();
-
-              // then
-              assertNull(customer);
-
-            }
-
-
-    @Test
-    void updateCustomerById() {
-    }
 
     @Test
     void shouldThrowCustomerNotFoundException() {

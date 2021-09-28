@@ -88,7 +88,7 @@ public class CustomerService {
         }
 
         this.saveTransactionToDatabase(customer, TransactionLogType.UPDATE_CUSTOMER);
-        return null;
+        return Optional.of(customerRepository.save(customer));
     }
 
 
