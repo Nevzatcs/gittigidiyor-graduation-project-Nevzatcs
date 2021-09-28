@@ -54,6 +54,7 @@ public class CustomerService {
         this.saveTransactionToDatabase(customer,TransactionLogType.SAVE_CUSTOMER);
         return Optional.of(customerRepository.save(customer));
     }
+
     //Method to delete customer by Id
     @Transactional
     public void deleteById(Long id) {

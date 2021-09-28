@@ -73,7 +73,7 @@ public class CustomerController {
     //To get transactions
     @GetMapping("/get-transactions-by-date")
     public ResponseEntity<Page<List<TransactionLogger>>> getAllTransactionsWithDate(
-            @ApiParam(value = "transaction query for user usage", example = "05/07/2021", required = true)
+            @ApiParam(value = "transaction query for user usage", example = "28/09/2021", required = true)
             @RequestParam String transactionDate,
             @RequestParam(required = false) Integer pageNumber,
             @RequestParam(required = false) Integer pageSize,
