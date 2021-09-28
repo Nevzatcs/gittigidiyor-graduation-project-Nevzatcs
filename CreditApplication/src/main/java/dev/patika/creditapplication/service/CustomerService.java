@@ -1,7 +1,7 @@
 package dev.patika.creditapplication.service;
 
 import dev.patika.creditapplication.dto.CustomerDTO;
-import dev.patika.creditapplication.exceptions.BadRequestException;
+import dev.patika.creditapplication.exceptions.CustomerIsAlreadyExistException;
 import dev.patika.creditapplication.exceptions.CustomerNotFoundException;
 import dev.patika.creditapplication.mappers.CustomerMapper;
 import dev.patika.creditapplication.model.Customer;
@@ -12,18 +12,13 @@ import dev.patika.creditapplication.repository.CustomerRepository;
 import dev.patika.creditapplication.repository.TransactionLoggerRepository;
 import dev.patika.creditapplication.util.ClientRequestInfo;
 import dev.patika.creditapplication.util.CustomerValidatorUtil;
-import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -49,10 +44,10 @@ public class CustomerService {
         boolean isExistPhoneNumber = customerRepository.selectExistsPhoneNumber(customerDTO.getPhoneNumber());
 
         if(isExists){
-            throw new BadRequestException("Customer with Identity Number : " + customerDTO.getIdentityNumber() + " is already exists!");
+            throw new CustomerIsAlreadyExistException("Customer with Identity Number : " + customerDTO.getIdentityNumber() + " is already exists!");
         }
         else if(isExistPhoneNumber){
-            throw new BadRequestException("Customer with phone number : " + customerDTO.getPhoneNumber() + " is already exists!");
+            throw new CustomerIsAlreadyExistException("Customer with phone number : " + customerDTO.getPhoneNumber() + " is already exists!");
         }
 
 

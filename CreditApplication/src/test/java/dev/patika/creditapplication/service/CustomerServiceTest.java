@@ -1,28 +1,23 @@
 package dev.patika.creditapplication.service;
 
 import dev.patika.creditapplication.dto.CustomerDTO;
-import dev.patika.creditapplication.exceptions.BadRequestException;
+import dev.patika.creditapplication.exceptions.CustomerIsAlreadyExistException;
 import dev.patika.creditapplication.exceptions.CustomerNotFoundException;
 import dev.patika.creditapplication.mappers.CustomerMapper;
 import dev.patika.creditapplication.model.Customer;
 import dev.patika.creditapplication.repository.CustomerRepository;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -116,15 +111,15 @@ class CustomerServiceTest {
     }
 
     @Test
-    void shouldThrowBadRequestException(){
+    void shouldThrowCustomerIsAlreadyExistException(){
         // given
         CustomerDTO dto = new CustomerDTO();
         dto.setIdentityNumber("11111111112");
         // when
 
 
-        Throwable exception = assertThrows(BadRequestException.class, () -> {
-            throw new BadRequestException("Customer with Identity Number : " + dto.getIdentityNumber() + " is already exists!");
+        Throwable exception = assertThrows(CustomerIsAlreadyExistException.class, () -> {
+            throw new CustomerIsAlreadyExistException("Customer with Identity Number : " + dto.getIdentityNumber() + " is already exists!");
         });
 
         //then

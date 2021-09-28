@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler({BadRequestException.class})
+    @ExceptionHandler({CustomerIsAlreadyExistException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ErrorResponse> handleException(BadRequestException exc){
+    public ResponseEntity<ErrorResponse> handleException(CustomerIsAlreadyExistException exc){
         ErrorResponse response = prepareErrorResponse(HttpStatus.BAD_REQUEST, exc.getMessage());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
