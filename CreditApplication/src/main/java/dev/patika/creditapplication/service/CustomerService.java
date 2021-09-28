@@ -87,16 +87,8 @@ public class CustomerService {
             throw new CustomerNotFoundException("Customer with Id : " + customerDTO.getId() + " is not found!");
         }
 
-        if(isExists){
-            throw new BadRequestException("Customer with Identity Number : " + customerDTO.getIdentityNumber() + " is already exists!");
-        }
-        //if(isExistPhoneNumber){
-        //    throw new BadRequestException("Customer with phone number : " + customerDTO.getPhoneNumber() + " is already exists!");
-        //}
-
-
         this.saveTransactionToDatabase(customer, TransactionLogType.UPDATE_CUSTOMER);
-        return Optional.of(customerRepository.save(customer));
+        return null;
     }
 
 
