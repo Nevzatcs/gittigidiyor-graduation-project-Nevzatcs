@@ -9,8 +9,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+//Test class
 @DataJpaTest
 class CustomerRepositoryTest {
+
     @Autowired
     CustomerRepository repository;
 
@@ -22,7 +24,7 @@ class CustomerRepositoryTest {
     @Test
     void shouldCheckWhenCustomerIdIsExists() {
         // given
-        Customer customer = new Customer("Can","Samur", 6000, "11111111112", "05364778822");
+        Customer customer = new Customer("Can","Samur", 6000.0, "11111111112", "05364778822");
         repository.save(customer);
 
         // when
@@ -36,7 +38,7 @@ class CustomerRepositoryTest {
     @Test
     void shouldCheckWhenCustomerIdIsNotExists() {
         // given
-        Customer customer = new Customer("Can","Samur", 6000, "11111111112", "05364778822");
+        Customer customer = new Customer("Can","Samur", 6000.0, "11111111112", "05364778822");
         //repository.save(employee);
 
         // when
@@ -49,7 +51,7 @@ class CustomerRepositoryTest {
     @Test
     void shouldCheckWhenCustomerIdentityNumberIsExists() {
         // given
-        Customer customer = new Customer("Can","Samur", 6000, "11111111112", "05364778822");
+        Customer customer = new Customer("Can","Samur", 6000.0, "11111111112", "05364778822");
         repository.save(customer);
 
         // when
@@ -62,7 +64,7 @@ class CustomerRepositoryTest {
     @Test
     void shouldCheckWhenCustomerIdentityIsNotExists() {
         // given
-        Customer customer = new Customer("Can","Samur", 6000, "11111111112", "05364778822");
+        Customer customer = new Customer("Can","Samur", 6000.0, "11111111112", "05364778822");
         //repository.save(employee);
 
         // when
@@ -74,7 +76,7 @@ class CustomerRepositoryTest {
 
     @Test
     void getCustomerSalaryByIdentityNumber(){
-        Customer customer = new Customer("Can","Samur", 6000, "11111111112", "05364778822");
+        Customer customer = new Customer("Can","Samur", 6000.0, "11111111112", "05364778822");
         repository.save(customer);
         //when
         double expected = repository.getCustomerSalaryByIdentityNumber(customer.getIdentityNumber());
@@ -85,7 +87,7 @@ class CustomerRepositoryTest {
     }
     @Test
     void getCustomerSalaryByIdentityNumberIsNotEqual(){
-        Customer customer = new Customer("Can","Samur", 6000, "11111111112", "05364778822");
+        Customer customer = new Customer("Can","Samur", 6000.0, "11111111112", "05364778822");
         //repository.save(customer);
         //when
         Double expected = repository.getCustomerSalaryByIdentityNumber(customer.getIdentityNumber());

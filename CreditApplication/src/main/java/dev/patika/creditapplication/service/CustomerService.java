@@ -25,7 +25,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+//Customer Service Class
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
@@ -37,7 +37,7 @@ public class CustomerService {
     @Autowired
     private TransactionLoggerRepository transactionLoggerRepository;
 
-
+    //Method to save customers
     @Transactional
     public Optional<Customer> saveCustomer(CustomerDTO customerDTO){
         boolean isExists = customerRepository.selectExistsIdentityNumber(customerDTO.getIdentityNumber());
@@ -50,19 +50,23 @@ public class CustomerService {
             throw new CustomerIsAlreadyExistException("Customer with phone number : " + customerDTO.getPhoneNumber() + " is already exists!");
         }
 
-
-
         Customer customer = customerMapper.mapFromCustomerDTOtoCustomer(customerDTO);
         this.saveTransactionToDatabase(customer,TransactionLogType.SAVE_CUSTOMER);
         return Optional.of(customerRepository.save(customer));
     }
+    //Method to delete customer by Id
     @Transactional
-        public void deleteById(Long id) {
+    public void deleteById(Long id) {
         Optional<Customer> customer = customerRepository.findById(id);
+        boolean isExistId = customerRepository.selectExistsId(id);
+        if(!isExistId){
+            throw new CustomerNotFoundException("Customer with Id : " + id + " is not exist!");
+        }
         this.saveTransactionToDatabase(customer.get(), TransactionLogType.DELETE_CUSTOMER );
         customerRepository.deleteById(id);
     }
 
+    //Method to find all customers
     @Transactional(readOnly = true)
     public List<Customer> findAll() {
         List<Customer> customerList = new ArrayList<>();
@@ -71,12 +75,10 @@ public class CustomerService {
         return customerList;
     }
 
-
+    //Method to update customer by Id
     @Transactional
     public Optional<Customer> updateCustomerById(CustomerDTO customerDTO){
         Customer customer = customerMapper.mapFromCustomerDTOtoCustomer(customerDTO);
-        boolean isExists = customerRepository.selectExistsIdentityNumber(customerDTO.getIdentityNumber());
-        boolean isExistPhoneNumber = customerRepository.selectExistsPhoneNumber(customerDTO.getPhoneNumber());
         boolean isExistId = customerRepository.selectExistsId(customerDTO.getId());
         if(!isExistId){
             throw new CustomerNotFoundException("Customer with Id : " + customerDTO.getId() + " is not found!");
@@ -87,8 +89,9 @@ public class CustomerService {
     }
 
 
-
-    public Optional<Customer> findById(Long id) {
+    //Method to find Customer by Id
+    @Transactional
+    public Optional<Customer> findCustomerById(Long id) {
         boolean isExistId = customerRepository.selectExistsId(id);
         if(!isExistId){
             throw new CustomerNotFoundException("Customer with Id : " + id + " is not exist!");
@@ -96,8 +99,7 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
-
-
+    //To save logs to database
     private void saveTransactionToDatabase(Customer customer, TransactionLogType transactionLogType) {
         TransactionLogger transactionLogger = new TransactionLogger();
         transactionLogger.setIdentityNumber(customer.getIdentityNumber());
@@ -109,7 +111,8 @@ public class CustomerService {
         transactionLogger.setTransactionLogType(transactionLogType);
         transactionLoggerRepository.save(transactionLogger);
     }
-
+    // Method to get all transactions with their dates
+    @Transactional
     public Page<List<TransactionLogger>> getAllTransactionsWithDate(String transactionDate, Integer page, Integer size, Pageable pageable) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         CustomerValidatorUtil.validateTransactionDate(transactionDate, formatter);

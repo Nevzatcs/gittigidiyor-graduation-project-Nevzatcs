@@ -1,15 +1,14 @@
 package dev.patika.creditapplication.dto;
 
 import dev.patika.creditapplication.model.enumeration.CreditScoreResult;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+//Implementation of models as a DTO
 public class CreditResultDTO {
 
     private double limit;

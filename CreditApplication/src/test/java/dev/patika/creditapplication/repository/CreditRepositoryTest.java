@@ -9,8 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 import static org.junit.jupiter.api.Assertions.*;
+//Test class
 @DataJpaTest
 class CreditRepositoryTest {
+
     @Autowired
     CreditRepository repository;
     @Test

@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Entity
 @Builder
+//Credit Score model and its states
 public class CreditScore extends AbstractBaseEntity {
 
     private Long lastNumber;

@@ -19,7 +19,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 import static org.mockito.Mockito.when;
-
+//Test class
 @ExtendWith(MockitoExtension.class)
 class CustomerServiceTest {
 
@@ -36,7 +36,7 @@ class CustomerServiceTest {
     void findAll() {
         //given
         when(mockCustomerRepository.findAll()).thenReturn(Collections.singletonList(
-                new Customer("Can","Samur", 6000, "11111111112", "05364778822")
+                new Customer("Can","Samur", 6000.0, "11111111112", "05364778822")
         ));
 
         //when //servisteki gerçek metodun testi
@@ -66,7 +66,7 @@ class CustomerServiceTest {
     @Test
     void deleteById() {
         //given
-        Customer customer = new Customer("Can", "Samur", 6000, "11111111112", "05364778822");
+        Customer customer = new Customer("Can", "Samur", 6000.0, "11111111112", "05364778822");
 
 
         //when
@@ -86,7 +86,7 @@ class CustomerServiceTest {
         when(mockCustomerRepository.selectExistsId(customer.getId())).thenReturn(Boolean.TRUE);
         when(mockCustomerRepository.findById(customer.getId())).thenReturn(Optional.of(customer));
         //when
-        Optional<Customer> expected = customerService.findById(1L);
+        Optional<Customer> expected = customerService.findCustomerById(1L);
         //then
         assertEquals(expected, Optional.of(customer));
 

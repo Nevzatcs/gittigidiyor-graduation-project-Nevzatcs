@@ -9,6 +9,7 @@ import org.springframework.web.context.annotation.SessionScope;
 @NoArgsConstructor
 @Component
 @SessionScope
+// For transaction to get client infos
 public class ClientRequestInfo {
 
     private String clientIpAddress;

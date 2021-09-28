@@ -2,6 +2,7 @@ package dev.patika.creditapplication.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.NumberFormat;
@@ -13,18 +14,21 @@ import javax.validation.constraints.Pattern;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+//Implementation of models as a DTO
 public class CustomerDTO {
+    //@Pattern for inputs
+    //NotBlank and NotNull implies that you cannot leave empty the field
     @ApiModelProperty(hidden = true)
     private Long id;
 
     @ApiModelProperty(example = "Nevzat")
     @NotBlank(message = "First Name is mandatory")
-    @Pattern(regexp = "^[a-zA-ZöçşığüÖÇŞİĞÜ ,]+(\\s{0,1}[a-zA-ZöçşığüÖÇŞİĞÜ,])*$", message = "Please check your First Name !")
+    @Pattern(regexp = "^[a-zA-ZöçşığüÖÇŞİĞÜ ,]+(\\s{0,1}[a-zA-ZöçşığüÖÇŞİĞÜ,])*$", message = "Connot contain special characters or numbers !")
     private String firstName;
 
     @ApiModelProperty(example = "Samur")
     @NotBlank(message = "Last Name is mandatory")
-    @Pattern(regexp = "^[a-zA-ZöçşığüÖÇŞİĞÜ ,]+(\\s{0,1}[a-zA-ZöçşığüÖÇŞİĞÜ,])*$", message = "Please check your Last Name !")
+    @Pattern(regexp = "^[a-zA-ZöçşığüÖÇŞİĞÜ ,]+(\\s{0,1}[a-zA-ZöçşığüÖÇŞİĞÜ,])*$", message = "Connot contain special characters or numbers !")
     private String lastName;
 
     @ApiModelProperty(example = "2500.0")

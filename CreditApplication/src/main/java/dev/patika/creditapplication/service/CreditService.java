@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-
+//Credit Service Class
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
@@ -36,7 +36,7 @@ public class CreditService {
     @Autowired
     private TransactionLoggerRepository transactionLoggerRepository;
 
-
+    //Method to get credit application result
     public CreditResultDTO getCreditRequest(String identityNumber){
         CreditResultDTO creditResult = new CreditResultDTO();
 
@@ -51,7 +51,7 @@ public class CreditService {
             creditResult.setResult(CreditScoreResult.REJECTED);
             creditResult.setLimit(0);
             sendMessage(identityNumber);
-            this.saveTransactionToDatabase(identityNumber, CreditScoreResult.REJECTED);
+            this.saveTransactionToDatabase(identityNumber, creditResult.getResult());
             return creditResult;
         }
         else if(credit>500 && credit<1000 && salary<5000){
@@ -59,7 +59,7 @@ public class CreditService {
             creditResult.setLimit(10000);
             creditResult.setResult(CreditScoreResult.ACCEPTED);
             sendMessage(identityNumber);
-            this.saveTransactionToDatabase(identityNumber, CreditScoreResult.ACCEPTED);
+            this.saveTransactionToDatabase(identityNumber, creditResult.getResult());
 
             return creditResult;
         }
@@ -67,7 +67,7 @@ public class CreditService {
             creditResult.setResult(CreditScoreResult.ACCEPTED);
             creditResult.setLimit(20000);
             sendMessage(identityNumber);
-            this.saveTransactionToDatabase(identityNumber, CreditScoreResult.ACCEPTED);
+            this.saveTransactionToDatabase(identityNumber, creditResult.getResult());
             return creditResult;
         }
         else if(credit>=1000 ){
@@ -75,12 +75,13 @@ public class CreditService {
             double limit = salary * creditLimitMultiplier;
             creditResult.setLimit(limit);
             sendMessage(identityNumber);
-            this.saveTransactionToDatabase(identityNumber, CreditScoreResult.ACCEPTED);
+            this.saveTransactionToDatabase(identityNumber, creditResult.getResult());
             return creditResult;
         }
         throw  new IdentityNumberNotFoundException("Identity Number is not found !, Check your Identity Number !");
     }
 
+    //Method to send message to Phone Number
     private void sendMessage(String identityNumber){
         Customer customer = customerRepository.getCustomerByIdentityNumber(identityNumber);
         CustomerDTO customerDTO = customerMapper.mapFromCustomertoCustomerDTO(customer);
@@ -88,6 +89,7 @@ public class CreditService {
 
     }
 
+    //To save logs to database
     private void saveTransactionToDatabase(String identityNumber, CreditScoreResult creditScoreResult) {
         TransactionLogger transactionLogger = new TransactionLogger();
         transactionLogger.setIdentityNumber(identityNumber);

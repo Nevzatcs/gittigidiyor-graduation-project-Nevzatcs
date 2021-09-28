@@ -9,6 +9,7 @@ import javax.persistence.MappedSuperclass;
 
 @Data
 @MappedSuperclass
+//AbstractBaseEntity class for Id generation
 public abstract class AbstractBaseEntity {
 
     @Id

@@ -21,7 +21,7 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-
+//Test class
 @ExtendWith(MockitoExtension.class)
 class CustomerControllerTest {
 
@@ -60,7 +60,7 @@ class CustomerControllerTest {
         Customer customer = new Customer();
         customer.setId(1L);
         Optional<Customer> expected = Optional.of(customer);
-        when(mockCustomerService.findById(any())).thenReturn(expected);  // çağırdığımda ne dönmeli
+        when(mockCustomerService.findCustomerById(any())).thenReturn(expected);  // çağırdığımda ne dönmeli
 
         //when
 
@@ -77,7 +77,7 @@ class CustomerControllerTest {
     @Test
     void notFindCustomerById(){
         // given
-        when(mockCustomerService.findById(any())).thenReturn(Optional.empty());
+        when(mockCustomerService.findCustomerById(any())).thenReturn(Optional.empty());
 
         // when
         CustomerDTO customerDTO = new CustomerDTO();

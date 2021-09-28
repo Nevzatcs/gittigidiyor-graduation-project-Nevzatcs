@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
-
+//Test class
 @ExtendWith(MockitoExtension.class)
 class CreditControllerTest {
 

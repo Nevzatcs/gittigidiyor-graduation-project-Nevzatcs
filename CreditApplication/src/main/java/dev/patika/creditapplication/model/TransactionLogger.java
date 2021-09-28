@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+//Transaction model and its states
 public class TransactionLogger {
 
     @Id
