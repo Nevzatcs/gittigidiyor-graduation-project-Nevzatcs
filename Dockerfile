@@ -1,5 +1,4 @@
 FROM openjdk:8
 WORKDIR /app
-COPY . .
-RUN chmod +x mvnw && ./mvnw clean install -U
-ENTRYPOINT ["./mvnw", "spring-boot:run"]
+ADD /target/CreditApplication-0.0.1-SNAPSHOT.jar CreditApplication-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java", "-jar", "CreditApplication-0.0.1-SNAPSHOT.jar"]
