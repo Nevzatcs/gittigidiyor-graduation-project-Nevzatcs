@@ -160,7 +160,7 @@ You can use Swagger, as I show in screenshots.
 ![h202](https://user-images.githubusercontent.com/80898514/135250469-94e56a55-0cd4-4b00-94be-30bf183c84f7.jpg)
 
 
-* Here is the examples of informations in database.
+* Here is the examples of informations from database.
 
 ![h204](https://user-images.githubusercontent.com/80898514/135250659-66a330f3-5f7f-4e8f-a241-c826f42fbd11.jpg)
 
@@ -187,7 +187,7 @@ You can use Swagger, as I show in screenshots.
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/113-GittiGidiyor-Java-Spring-Bootcamp/fourth-homework-Nevzatcs/blob/main/LICENSE) for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/113-GittiGidiyor-Java-Spring-Bootcamp/gittigidiyor-graduation-project-Nevzatcs/blob/main/LICENSE) for more information.
 
 
 
