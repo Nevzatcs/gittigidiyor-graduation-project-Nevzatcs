@@ -82,11 +82,17 @@ You should have JDK 1.8 to  built the project.
 -----------------------
 Firstly, you can clone repo.
 
-``` git clone https://github.com/113-GittiGidiyor-Java-Spring-Bootcamp/gittigidiyor-graduation-project-Nevzatcs ```
+``` 
+git clone https://github.com/113-GittiGidiyor-Java-Spring-Bootcamp/gittigidiyor-graduation-project-Nevzatcs.git 
+```
 
 Then, change your directory to root.
 
-``` cd gittigidiyor-graduation-project-Nevzatcs/CreditApplication ```
+``` 
+
+cd gittigidiyor-graduation-project-Nevzatcs/CreditApplication 
+
+```
 
 On a separate terminal and since this is a maven project you just need to go to the root of the project and perform the command:
 ```
