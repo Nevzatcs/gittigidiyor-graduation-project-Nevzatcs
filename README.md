@@ -99,7 +99,7 @@ mvn clean install
 or if you don't have installed maven on your OS
 
 ```
-mvnw clan install
+mvnw clean install
 ```
 
 
@@ -108,7 +108,7 @@ This will run the unit tests of the project and create the jar file.
 After having the jar file you can simply run:
 
 ```
-java -jar target/wallet-service.jar
+java -jar target/CreditApplication-0.0.1-SNAPSHOT.jar
 ```
 
 Since this is a Spring Boot project, you can also run the project with below command;
