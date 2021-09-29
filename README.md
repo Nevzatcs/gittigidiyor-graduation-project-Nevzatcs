@@ -86,6 +86,8 @@ Firstly, you can clone repo.
 
 Then, change your directory to root.
 
+``` cd gittigidiyor-graduation-project-Nevzatcs/CreditApplication ```
+
 On a separate terminal and since this is a maven project you just need to go to the root of the project and perform the command:
 ```
 mvn clean install
