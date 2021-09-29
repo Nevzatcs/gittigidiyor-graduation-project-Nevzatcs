@@ -122,31 +122,38 @@ The project will run on port 8080 (configured as default).
 <!-- USAGE EXAMPLES -->
 ## Usage
 After run the project:
-1. You should  open this URL : http://localhost:8080/swagger-ui.html#/ to see and make the CRUD operations that can be done.
+1. You should  open this URL : http://localhost:8080/swagger-ui.html#/ to see and make the operations that can be done.
 2. You can get informations about operations that you've done in Swagger by reaching H2 database :  http://localhost:8080/h2-console by clicking URL you can go to H2 console.(There is no password for your access, you can change password in DataSourceConfiguration file.)
 
 ### Swagger UI
 You can use Swagger, as I show in images.
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 * Step 1
+![swaq01](https://user-images.githubusercontent.com/80898514/135250405-3a5fa845-5190-4e2c-aa7d-250e24c0e038.jpg)
 
 
 * Step 2
+![swaq02](https://user-images.githubusercontent.com/80898514/135250415-4415467d-1055-432e-b41c-fab1ee331b2f.jpg)
 
 
 * Step 3
 
+![swaq03](https://user-images.githubusercontent.com/80898514/135250430-f6d57022-d7ae-4219-acf4-8f9b373b9d2f.jpg)
 
 
 ### H2 Database
 * After opening the URL, you will get this page. By clicking connect, you can see the tables and you can monitor the table and its informations.
+![h201](https://user-images.githubusercontent.com/80898514/135250459-2322c95a-e6b0-4b8b-90c8-bb533b063737.jpg)
 
 
 * After clicking connect, you can see the tables and you can monitor the table and its informations according to your SQL query.
+![h202](https://user-images.githubusercontent.com/80898514/135250469-94e56a55-0cd4-4b00-94be-30bf183c84f7.jpg)
 
 
-* Here is the s-examples of informations in database.
+* Here is the examples of informations in database.
+![h204](https://user-images.githubusercontent.com/80898514/135250659-66a330f3-5f7f-4e8f-a241-c826f42fbd11.jpg)
 
+![h203](https://user-images.githubusercontent.com/80898514/135250664-76a6feef-a940-4386-a75d-7151dfe4ccfe.jpg)
 
 
 
