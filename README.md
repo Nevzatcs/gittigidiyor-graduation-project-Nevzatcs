@@ -129,11 +129,11 @@ The project will run on port 8080 (configured as default).
 ## Usage
 After run the project:
 1. You should  open this URL : http://localhost:8080/swagger-ui.html#/ to see and make the operations that can be done.
-2. You can get informations about operations that you've done in Swagger by reaching H2 database :  http://localhost:8080/h2-console by clicking URL you can go to H2 console.(There is no password for your access, you can change password in DataSourceConfiguration file.)
+2. You can get informations about operations that you've done in Swagger by reaching H2 database :  http://localhost:8080/h2-console by clicking URL you can go to H2 console.(There is no password for your access, you can change password in application.properties file.)
 
 ### Swagger UI
-You can use Swagger, as I show in images.
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+You can use Swagger, as I show in screenshots.
+
 * Step 1
 
 ![swaq01](https://user-images.githubusercontent.com/80898514/135250405-3a5fa845-5190-4e2c-aa7d-250e24c0e038.jpg)
@@ -150,7 +150,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 
 ### H2 Database
-* After opening the URL, you will get this page. By clicking connect, you can see the tables and you can monitor the table and its informations.
+* After opening the URL, you will get this page. 
 
 ![h201](https://user-images.githubusercontent.com/80898514/135250459-2322c95a-e6b0-4b8b-90c8-bb533b063737.jpg)
 
