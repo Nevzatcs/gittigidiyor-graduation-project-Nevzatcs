@@ -123,11 +123,13 @@ mvnw spring-boot:run
 
 The project will run on port 8080 (configured as default).
 
-###### How to run the project with Docker:
-
+###### How to run the project with Docker
+```
 docker pull nevzatcs/credit-application
-
+```
+```
 docker run -p 8080:8080 nevzatcs/credit-application
+```
 
 (Assume that docker installed on your computer)
 
